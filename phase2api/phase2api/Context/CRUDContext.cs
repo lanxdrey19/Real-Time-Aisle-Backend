@@ -15,7 +15,8 @@ namespace phase2api.Context
 
         }
 
-        public DbSet<Entry> Entries { get; set; }
+        public DbSet<Diary> Diary { get; set; }
+        public DbSet<Entry> Entry { get; set; }
 
     }
 }

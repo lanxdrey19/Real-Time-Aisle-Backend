@@ -7,27 +7,14 @@ using System.Threading.Tasks;
 
 namespace phase2api.Models
 {
-    public class Entry
+    public class Diary
     {
+
         [Required]
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int EntryId { get; set; }
-
-        [Required]
-        public string Mood { get; set; }
-
-        [Required]
-        public string MoodContext { get; set; }
-
-        [Required]
-        public string OnePositive { get; set; }
-
-        [Required]
         public int DiaryId { get; set; }
 
-
-
+        public ICollection<Entry> Entry { get; set; }
     }
-
 }
