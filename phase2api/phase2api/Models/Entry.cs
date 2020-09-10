@@ -15,7 +15,7 @@ namespace phase2api.Models
 
         public string Mood { get; set; }
 
-        public string Context { get; set; }
+        public string MoodContext { get; set; }
 
         public string OnePositive { get; set; }
 
