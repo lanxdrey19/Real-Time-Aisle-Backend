@@ -7,10 +7,10 @@ using System.Threading.Tasks;
 
 namespace phase2api.Context
 {
-    public class CRUDContext : DbContext
+    public class AppDataBase : DbContext
     {
 
-        public CRUDContext(DbContextOptions<CRUDContext> options) : base(options)
+        public AppDataBase(DbContextOptions<AppDataBase> options) : base(options)
         {
 
         }
