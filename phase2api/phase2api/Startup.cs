@@ -10,6 +10,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using phase2api.Services;
 
 namespace phase2api
 {
@@ -26,6 +27,7 @@ namespace phase2api
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+            services.AddSingleton<IEntriesService, EntriesService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
