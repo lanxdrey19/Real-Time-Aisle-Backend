@@ -7,5 +7,12 @@ namespace AislesApi.Models
 {
     public class Aisle
     {
+
+        public int AisleID { get; set; }
+        public string AisleName { get; set; }
+
+
+        public virtual ICollection<Item> Items { get; set; }
+
     }
 }
