@@ -44,33 +44,33 @@ namespace AislesAPI.Controllers
         // PUT: api/Aisles/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutAisle(int id, Aisle aisle)
+        [HttpPost("{id}/AddSection")]
+        public async Task<ActionResult<Aisle>> AddSectionToAisle(int id, AisleSection newAisleSection)
         {
-            if (id != aisle.AisleId)
+            if (id != newAisleSection.AisleId)
             {
                 return BadRequest();
             }
 
-            _context.Entry(aisle).State = EntityState.Modified;
+            var existingAisle = _context.Aisles.Where(a => a.AisleId == id).Include(a => a.AisleSections).SingleOrDefault();
 
-            try
+
+            //_context.Add(newAisleSection).State = EntityState.Modified;
+            _context.Add<AisleSection>(newAisleSection);
+
+            if (existingAisle != null)
             {
+                existingAisle.AisleSections.Add(newAisleSection);
                 await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
+            } 
+            else
             {
-                if (!AisleExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
+
+                return NotFound("Aisle ID is not available");
+
             }
 
-            return NoContent();
+            return existingAisle;
         }
 
         // POST: api/Aisles

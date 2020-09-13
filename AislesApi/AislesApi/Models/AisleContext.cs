@@ -16,5 +16,8 @@ namespace AislesAPI.Models
 
         public DbSet<Aisle> Aisles { get; set; }
         public DbSet<AisleSection> AisleSections { get; set; }
+
+        
+
     }
 }

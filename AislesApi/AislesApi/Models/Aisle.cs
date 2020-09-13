@@ -9,10 +9,10 @@ namespace AislesAPI.Models
 {
     public class Aisle
     {
-        public Aisle()
-        {
-            AisleSections = new HashSet<AisleSection>();
-        }
+        //public Aisle()
+        //{
+        //    AisleSections = new HashSet<AisleSection>();
+        //}
 
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -21,6 +21,6 @@ namespace AislesAPI.Models
         [Required]
         public string AisleName { get; set; }
 
-        public virtual ICollection<AisleSection> AisleSections { get; set; }
+        public ICollection<AisleSection> AisleSections { get; set; }
     }
 }
