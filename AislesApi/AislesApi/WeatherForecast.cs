@@ -1,6 +1,6 @@
 using System;
 
-namespace AislesApi
+namespace AislesAPI
 {
     public class WeatherForecast
     {
