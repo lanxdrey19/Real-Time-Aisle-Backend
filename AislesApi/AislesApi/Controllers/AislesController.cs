@@ -108,11 +108,13 @@ namespace AislesAPI.Controllers
                 return BadRequest();
             }
 
+            
             var existingAisle = _context.Aisles.Where(a => a.AisleID == aisle.AisleID).Include(a => a.Sections).SingleOrDefault();
 
             if (existingAisle != null)
             {
                 _context.Entry(existingAisle).CurrentValues.SetValues(aisle);
+
                 await _context.SaveChangesAsync();
             }
             else

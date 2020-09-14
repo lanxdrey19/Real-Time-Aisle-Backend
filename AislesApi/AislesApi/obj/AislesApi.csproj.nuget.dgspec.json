@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Lance Delos Reyes\\phase2\\msa-phase2-backend\\AislesAPI\\AislesAPI\\AislesAPI.csproj": {}
+    "C:\\Users\\Lance Delos Reyes\\phase2\\msa-phase2-backend\\AislesApi\\AislesAPI\\AislesAPI.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Lance Delos Reyes\\phase2\\msa-phase2-backend\\AislesAPI\\AislesAPI\\AislesAPI.csproj": {
+    "C:\\Users\\Lance Delos Reyes\\phase2\\msa-phase2-backend\\AislesApi\\AislesAPI\\AislesAPI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Lance Delos Reyes\\phase2\\msa-phase2-backend\\AislesAPI\\AislesAPI\\AislesAPI.csproj",
+        "projectUniqueName": "C:\\Users\\Lance Delos Reyes\\phase2\\msa-phase2-backend\\AislesApi\\AislesAPI\\AislesAPI.csproj",
         "projectName": "AislesAPI",
-        "projectPath": "C:\\Users\\Lance Delos Reyes\\phase2\\msa-phase2-backend\\AislesAPI\\AislesAPI\\AislesAPI.csproj",
+        "projectPath": "C:\\Users\\Lance Delos Reyes\\phase2\\msa-phase2-backend\\AislesApi\\AislesAPI\\AislesAPI.csproj",
         "packagesPath": "C:\\Users\\Lance Delos Reyes\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Lance Delos Reyes\\phase2\\msa-phase2-backend\\AislesAPI\\AislesAPI\\obj\\",
+        "outputPath": "C:\\Users\\Lance Delos Reyes\\phase2\\msa-phase2-backend\\AislesApi\\AislesAPI\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Lance Delos Reyes\\AppData\\Roaming\\NuGet\\NuGet.Config",

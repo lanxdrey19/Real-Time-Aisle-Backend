@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "Zj/IfDAlalYUUEA2AkSqyQjtxxPpWhsDycJbEK1u3tZrjhOuiEgQEoky6jnEKFDIez5IkV2Ukolv44GGSt4o6w==",
+  "dgSpecHash": "8nqmhHhzTtANl4JUk3GX+Cj823b95q1AVAN1I/d4+Mfg3a53qJZVwEZQ9QqQG+j5oyl985qEhCEJEcvlPUWbFw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Lance Delos Reyes\\phase2\\msa-phase2-backend\\AislesAPI\\AislesAPI\\AislesAPI.csproj",
+  "projectFilePath": "C:\\Users\\Lance Delos Reyes\\phase2\\msa-phase2-backend\\AislesApi\\AislesAPI\\AislesAPI.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Lance Delos Reyes\\.nuget\\packages\\microsoft.bcl.asyncinterfaces\\1.1.1\\microsoft.bcl.asyncinterfaces.1.1.1.nupkg.sha512",
     "C:\\Users\\Lance Delos Reyes\\.nuget\\packages\\microsoft.bcl.hashcode\\1.1.0\\microsoft.bcl.hashcode.1.1.0.nupkg.sha512",

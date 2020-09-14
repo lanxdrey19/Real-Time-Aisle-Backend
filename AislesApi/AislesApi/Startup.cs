@@ -35,13 +35,13 @@ namespace AislesAPI
                 option.SwaggerDoc(name: "v1", new OpenApiInfo { Title = "Aisles API", Version = "v1" });
             });
 
+            //services.AddCors();
             services.AddCors(options =>
             {
                 options.AddPolicy(name: MyAllowSpecificOrigins,
                     builder =>
                     {
-                        builder.WithOrigins("http://localhost:3000",
-                                            "replaceThisByYourHostedUrl.com")
+                        builder.WithOrigins("http://localhost:3000","frontend.com")
                                             .AllowAnyHeader()
                                             .AllowAnyMethod();
                     });
@@ -51,6 +51,9 @@ namespace AislesAPI
             {
                 options.UseSqlServer(Configuration.GetConnectionString("sqlDatabase"));
             });
+
+
+
             services.AddControllers();
         }
 
@@ -61,6 +64,8 @@ namespace AislesAPI
             {
                 app.UseDeveloperExceptionPage();
             }
+
+
 
             app.UseHttpsRedirection();
 
@@ -73,7 +78,13 @@ namespace AislesAPI
                 x.SwaggerEndpoint("/swagger/v1/swagger.json", "Aisles API");
             });
 
-            app.UseCors(MyAllowSpecificOrigins);
+            //app.UseCors(MyAllowSpecificOrigins);
+            //app.UseCors(builder => builder
+            //    .AllowAnyHeader()
+             //   .AllowAnyMethod()
+            //    .SetIsOriginAllowed((host) => true)
+             //   .AllowCredentials()
+           //     );
 
             app.UseAuthorization();
 

@@ -64,3 +64,7 @@ C:\Users\Lance Delos Reyes\phase2\msa-phase2-backend\AislesAPI\AislesAPI\bin\Deb
 C:\Users\Lance Delos Reyes\phase2\msa-phase2-backend\AislesAPI\AislesAPI\obj\Debug\netcoreapp3.1\AislesAPI.csproj.CoreCompileInputs.cache
 C:\Users\Lance Delos Reyes\phase2\msa-phase2-backend\AislesAPI\AislesAPI\obj\Debug\netcoreapp3.1\AislesAPI.MvcApplicationPartsAssemblyInfo.cs
 C:\Users\Lance Delos Reyes\phase2\msa-phase2-backend\AislesAPI\AislesAPI\obj\Debug\netcoreapp3.1\AislesAPI.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\Lance Delos Reyes\phase2\msa-phase2-backend\AislesAPI\AislesAPI\bin\Debug\netcoreapp3.1\Properties\serviceDependencies.json
+C:\Users\Lance Delos Reyes\phase2\msa-phase2-backend\AislesAPI\AislesAPI\bin\Debug\netcoreapp3.1\Properties\serviceDependencies.msap2api - Web Deploy.json
+C:\Users\Lance Delos Reyes\phase2\msa-phase2-backend\AislesAPI\AislesAPI\bin\Debug\netcoreapp3.1\Properties\ServiceDependencies\msap2api - Web Deploy\mssql1.arm.json
+C:\Users\Lance Delos Reyes\phase2\msa-phase2-backend\AislesAPI\AislesAPI\bin\Debug\netcoreapp3.1\Properties\ServiceDependencies\msap2api - Web Deploy\profile.arm.json
