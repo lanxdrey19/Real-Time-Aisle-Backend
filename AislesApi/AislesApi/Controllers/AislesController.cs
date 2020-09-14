@@ -42,6 +42,20 @@ namespace AislesAPI.Controllers
             return aisle;
         }
 
+        [HttpGet]
+        [Route("GetAisleByName/{name}")]
+        public async Task<ActionResult<Aisle>> GetAisleByBame(string name)
+        {
+            var aisle = await _context.Aisles.Include(a => a.Sections).FirstOrDefaultAsync(i => i.AisleName == name);
+
+            if (aisle == null)
+            {
+                return NotFound();
+            }
+
+            return aisle;
+        }
+
         [HttpPost]
         [Route("AddAisle")]
         public async Task<ActionResult<Aisle>> PostAisle(Aisle aisle)
