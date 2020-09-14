@@ -65,7 +65,7 @@ namespace AislesAPI.Controllers
 
 
             //_context.Add(newAisleSection).State = EntityState.Modified;
-           //_context.Add<Section>(newSection);
+            //_context.Add<Section>(newSection);
 
             if (existingAisle != null)
             {
@@ -96,6 +96,31 @@ namespace AislesAPI.Controllers
             await _context.SaveChangesAsync();
 
             return aisle;
+        }
+
+        [HttpPut]
+        [Route("ChangeAisleName/{id}")]
+        public async Task<ActionResult<Aisle>> ChangeName(int id, Aisle aisle)
+        {
+
+            if (id != aisle.AisleID)
+            {
+                return BadRequest();
+            }
+
+            var existingAisle = _context.Aisles.Where(a => a.AisleID == aisle.AisleID).Include(a => a.Sections).SingleOrDefault();
+
+            if (existingAisle != null)
+            {
+                _context.Entry(existingAisle).CurrentValues.SetValues(aisle);
+                await _context.SaveChangesAsync();
+            }
+            else
+            {
+                return NotFound();
+            }
+
+            return existingAisle;
         }
 
 
