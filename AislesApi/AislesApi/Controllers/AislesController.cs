@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AislesAPI.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using AislesAPI.Models;
 
 namespace AislesAPI.Controllers
 {
@@ -13,25 +13,26 @@ namespace AislesAPI.Controllers
     [ApiController]
     public class AislesController : ControllerBase
     {
-        private readonly AisleContext _context;
 
-        public AislesController(AisleContext context)
+        private AppDatabase _context;
+
+        public AislesController(AppDatabase context)
         {
             _context = context;
         }
 
-        // GET: api/Aisles
         [HttpGet]
+        [Route("GetAllAisles")]
         public async Task<ActionResult<IEnumerable<Aisle>>> GetAisles()
         {
-            return await _context.Aisles.ToListAsync();
+            return await _context.Aisles.Include(a => a.Sections).ToListAsync();
         }
 
-        // GET: api/Aisles/5
-        [HttpGet("{id}")]
+        [HttpGet]
+        [Route("GetAisle/{id}")]
         public async Task<ActionResult<Aisle>> GetAisle(int id)
         {
-            var aisle = await _context.Aisles.FindAsync(id);
+            var aisle = await _context.Aisles.Include(a => a.Sections).FirstOrDefaultAsync(i => i.AisleID == id);
 
             if (aisle == null)
             {
@@ -41,28 +42,36 @@ namespace AislesAPI.Controllers
             return aisle;
         }
 
-        // PUT: api/Aisles/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for
-        // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
-        [HttpPost("{id}/AddSection")]
-        public async Task<ActionResult<Aisle>> AddSectionToAisle(int id, AisleSection newAisleSection)
+        [HttpPost]
+        [Route("AddAisle")]
+        public async Task<ActionResult<Aisle>> PostAisle(Aisle aisle)
         {
-            if (id != newAisleSection.AisleId)
+            _context.Aisles.Add(aisle);
+            await _context.SaveChangesAsync();
+
+            return CreatedAtAction("GetAisle", new { id = aisle.AisleID }, aisle);
+        }
+
+        [HttpPost]
+        [Route("AddSectionTo/{id}")]
+        public async Task<ActionResult<Aisle>> AddSectionToAisle(int id, Section newSection)
+        {
+            if (id != newSection.AisleID)
             {
                 return BadRequest();
             }
 
-            var existingAisle = _context.Aisles.Where(a => a.AisleId == id).Include(a => a.AisleSections).SingleOrDefault();
+            var existingAisle = _context.Aisles.Where(a => a.AisleID == id).Include(a => a.Sections).SingleOrDefault();
 
 
             //_context.Add(newAisleSection).State = EntityState.Modified;
-            _context.Add<AisleSection>(newAisleSection);
+           //_context.Add<Section>(newSection);
 
             if (existingAisle != null)
             {
-                existingAisle.AisleSections.Add(newAisleSection);
+                existingAisle.Sections.Add(newSection);
                 await _context.SaveChangesAsync();
-            } 
+            }
             else
             {
 
@@ -73,20 +82,8 @@ namespace AislesAPI.Controllers
             return existingAisle;
         }
 
-        // POST: api/Aisles
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for
-        // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
-        [HttpPost]
-        public async Task<ActionResult<Aisle>> PostAisle(Aisle aisle)
-        {
-            _context.Aisles.Add(aisle);
-            await _context.SaveChangesAsync();
-
-            return CreatedAtAction("GetAisle", new { id = aisle.AisleId }, aisle);
-        }
-
-        // DELETE: api/Aisles/5
-        [HttpDelete("{id}")]
+        [HttpDelete]
+        [Route("DeleteAisle/{id}")]
         public async Task<ActionResult<Aisle>> DeleteAisle(int id)
         {
             var aisle = await _context.Aisles.FindAsync(id);
@@ -101,9 +98,8 @@ namespace AislesAPI.Controllers
             return aisle;
         }
 
-        private bool AisleExists(int id)
-        {
-            return _context.Aisles.Any(e => e.AisleId == id);
-        }
+
+
+
     }
 }

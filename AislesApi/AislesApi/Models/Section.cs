@@ -7,16 +7,17 @@ using System.Threading.Tasks;
 
 namespace AislesAPI.Models
 {
-    public class Aisle
+    public class Section
     {
         [Required]
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int AisleID { get; set; }
+        public int SectionID { get; set; }
 
         [Required]
-        public string AisleName { get; set; }
+        public string SectionName { get; set; }
 
-        public virtual ICollection<Section> Sections { get; set; }
+        [Required]
+        public int AisleID { get; set; }
     }
 }

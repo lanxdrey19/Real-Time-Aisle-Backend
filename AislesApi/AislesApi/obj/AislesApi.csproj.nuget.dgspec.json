@@ -38,15 +38,11 @@
       "frameworks": {
         "netcoreapp3.1": {
           "dependencies": {
-            "Microsoft.EntityFrameworkCore.InMemory": {
+            "Microsoft.EntityFrameworkCore": {
               "target": "Package",
               "version": "[3.1.8, )"
             },
             "Microsoft.EntityFrameworkCore.SqlServer": {
-              "target": "Package",
-              "version": "[3.1.8, )"
-            },
-            "Microsoft.EntityFrameworkCore.Sqlite": {
               "target": "Package",
               "version": "[3.1.8, )"
             },
@@ -56,9 +52,9 @@
               "target": "Package",
               "version": "[3.1.8, )"
             },
-            "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
+            "Swashbuckle.AspNetCore": {
               "target": "Package",
-              "version": "[3.1.4, )"
+              "version": "[5.5.1, )"
             }
           },
           "imports": [
