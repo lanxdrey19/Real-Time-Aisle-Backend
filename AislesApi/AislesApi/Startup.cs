@@ -41,7 +41,7 @@ namespace AislesAPI
                 options.AddPolicy(name: MyAllowSpecificOrigins,
                     builder =>
                     {
-                        builder.WithOrigins("http://localhost:3000","frontend.com")
+                        builder.WithOrigins("http://localhost:3000")
                                             .AllowAnyHeader()
                                             .AllowAnyMethod();
                     });
@@ -78,7 +78,7 @@ namespace AislesAPI
                 x.SwaggerEndpoint("/swagger/v1/swagger.json", "Aisles API");
             });
 
-            //app.UseCors(MyAllowSpecificOrigins);
+            app.UseCors(MyAllowSpecificOrigins);
             //app.UseCors(builder => builder
             //    .AllowAnyHeader()
              //   .AllowAnyMethod()

@@ -32,7 +32,7 @@ namespace AislesAPI.Controllers
         [Route("GetAisle/{id}")]
         public async Task<ActionResult<Aisle>> GetAisle(int id)
         {
-            var aisle = await _context.Aisles.Include(a => a.Sections).FirstOrDefaultAsync(i => i.AisleID == id);
+            var aisle = await _context.Aisles.Include(a => a.Sections).SingleOrDefaultAsync(i => i.AisleID == id);
 
             if (aisle == null)
             {
@@ -66,36 +66,6 @@ namespace AislesAPI.Controllers
             return CreatedAtAction("GetAisle", new { id = aisle.AisleID }, aisle);
         }
 
-        [HttpPost]
-        [Route("AddSectionTo/{id}")]
-        public async Task<ActionResult<Aisle>> AddSectionToAisle(int id, Section newSection)
-        {
-            if (id != newSection.AisleID)
-            {
-                return BadRequest();
-            }
-
-            var existingAisle = _context.Aisles.Where(a => a.AisleID == id).Include(a => a.Sections).SingleOrDefault();
-
-
-            //_context.Add(newAisleSection).State = EntityState.Modified;
-            //_context.Add<Section>(newSection);
-
-            if (existingAisle != null)
-            {
-                existingAisle.Sections.Add(newSection);
-                await _context.SaveChangesAsync();
-            }
-            else
-            {
-
-                return NotFound("Aisle ID is not available");
-
-            }
-
-            return existingAisle;
-        }
-
         [HttpDelete]
         [Route("DeleteAisle/{id}")]
         public async Task<ActionResult<Aisle>> DeleteAisle(int id)
@@ -112,8 +82,10 @@ namespace AislesAPI.Controllers
             return aisle;
         }
 
+       
+
         [HttpPut]
-        [Route("ChangeAisleName/{id}")]
+        [Route("ChangeAisleDetails/{id}")]
         public async Task<ActionResult<Aisle>> ChangeName(int id, Aisle aisle)
         {
 
@@ -122,23 +94,32 @@ namespace AislesAPI.Controllers
                 return BadRequest();
             }
 
-            
-            var existingAisle = _context.Aisles.Where(a => a.AisleID == aisle.AisleID).Include(a => a.Sections).SingleOrDefault();
 
-            if (existingAisle != null)
+            _context.Entry(aisle).State = EntityState.Modified;
+
+            try
             {
-                _context.Entry(existingAisle).CurrentValues.SetValues(aisle);
-
                 await _context.SaveChangesAsync();
             }
-            else
+            catch (DbUpdateConcurrencyException)
             {
-                return NotFound();
+                if (!AisleExists(id))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
             }
 
-            return existingAisle;
+            return aisle;
         }
 
+        private bool AisleExists(int id)
+        {
+            return _context.Aisles.Any(e => e.AisleID == id);
+        }
 
 
 
