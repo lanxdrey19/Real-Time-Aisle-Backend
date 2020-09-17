@@ -41,7 +41,7 @@ namespace AislesAPI
                 options.AddPolicy(name: MyAllowSpecificOrigins,
                     builder =>
                     {
-                        builder.WithOrigins("http://localhost:3000")
+                        builder.WithOrigins("https://realtimeaislemsa2020p2.azurewebsites.net")
                                             .AllowAnyHeader()
                                             .AllowAnyMethod();
                     });
